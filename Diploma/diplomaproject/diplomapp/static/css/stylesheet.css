@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+}
+
+.navbar
+{
+    background: linear-gradient(#008B8B, #9ACD32);
+    text: #E0FFFF;
+}
+
+.footer {
+    background: linear-gradient(#9ACD32, #008B8B);
+    margin-top: auto;
+}
+
+.text-muted
+{
+    color: white;
+}
+
+.page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ .form-box {
+    padding: 50px; /* Поля */
+    background: black; /* Цвет фона */
+    border: 10px solid #E81E25; /* Параметры рамки */
+   }

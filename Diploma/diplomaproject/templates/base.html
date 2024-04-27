@@ -1,0 +1,70 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}"/>
+    {% block head %}
+    {% endblock head %}
+
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+</head>
+<body>
+<div class="page">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <nav class="navbar navbar-light bg-light">
+                    <img style="border-radius: 50%" src="{% static 'img/logo_copy.jpg' %}" alt="" width="100px"
+                         height="100px">
+                </nav>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-nav">
+
+                        <a style="color: white" class="nav-link" href="{% url 'send_message' %}">Заполнить форму заявки</a>
+                        <a style="color: white" class="nav-link" href="{% url 'catalogue' %}">Каталог</a>
+                        <a style="color: white" class="nav-link" href="{% url 'index' %}">Вернуться на главную</a>
+                    </div>
+                </div>
+                {% if request.user.is_authenticated %}
+                {{ request.user }}, <br>вы авторизованы
+                <a class="nav-item nav-link" href="{% url 'upprofile' %}">Обновить профиль</a>
+                <a class="nav-item nav-link" href="{% url 'show_profile' %}">Посмотреть профиль</a>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log Out</button>
+                </form>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Войти</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    {% block content %}
+
+    {% endblock content %}
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-white">Все права защищены © 2024 </span>
+        </div>
+        <a style="color: black" class="nav-link" href="{% url 'send_tg_support_message' %}">ТехПоддержка</a>
+    </footer>
+
+
+</div>
+</body>
+</html>

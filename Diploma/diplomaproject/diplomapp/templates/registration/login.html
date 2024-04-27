@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script type="application/x-javascript">addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+</script>
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+
+{% endblock%}
+
+    {% block content %}
+    <div class="main-w3layouts wrapper">
+        <h1>Авторизируйтесь</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form class="form" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="username" id="username" style="color:white"
+                           placeholder="Имя пользователя"/>
+                    <input type="password" name="password" id="pwd" style="color:white" placeholder="Пароль"/>
+                    <div class="wthree-text">
+                        <div class="clear"></div>
+                    </div>
+                    <a class="nav-item nav-link" href="{% url 'index' %}">
+                        <button type="submit">Войти</button>
+                    </a>
+                </form>
+                <p class="message">Еще не зарегистрированы? <a href="{% url 'register' %}">Создать аккаунт</a></p>
+            </div>
+        </div>
+
+        <div hidden="colorlibcopy-agile">
+            <p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/"
+                                                                               target="_blank">Colorlib</a></p>
+        </div>
+        <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    {% endblock content %}

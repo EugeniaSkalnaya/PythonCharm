@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Форма для обращения в техническую поддержку
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+<form action="" method="post" >
+    {% csrf_token %}
+    {% for field in form %}
+    {% if field == form.name%}
+<div class="container">
+            <div class="row">
+        <div class="col-8"><br>
+            <div class="p-3 mb-2 bg-success text-white">{{ form.name }}
+    </div>
+        </div>
+        </div>
+</div>
+    {% elif field == form.phone_number%}
+        <div class="container">
+            <div class="row">
+        <div class="col-8"><br>
+            <div class="p-3 mb-2 bg-success text-white"> Введите номер телефона 7 *** *** ** **
+                {{ form.phone_number }}
+    </div>
+    </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+                <div class="row">
+        <div class="col-8">
+            <div class="p-3 mb-2 bg-success">
+            {{ form.text }}
+                    {% endif %}
+    {% endfor %}
+        </div>
+        </div>
+        </div></div>
+
+ <div class="container">
+     <div class="row">
+        <div class="col-8">
+            <div class="p-3 mb-2 bg-success">
+    <input type="submit" value="Отправить">
+                 </div>
+        </div>
+        </div>
+</div>
+</form>
+</div>
+{% endblock content %}
