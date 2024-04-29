@@ -1,13 +1,13 @@
 import logging
 
-from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
-from django.db import transaction
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.views import View
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, TemplateView
 
 from .forms import SpecialistRegistrationForm, DiplomaForm, SpecialistProfileForm
 from .models import Profile, Diploma
@@ -34,65 +34,22 @@ def register(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    """представление для обновления информации в профиле пользователя"""
+    model = Profile
+    form_class = SpecialistProfileForm
+    template_name = "specialist_profile_update.html"
+    success_url = reverse_lazy('profile_success')
 
-#не работает
-@login_required
-def specialist_profile_update(request):
-    """Представление для обновления информации профиля для аутентифицированного пользователя"""
-    #profile = get_object_or_404(Profile, user=request.user)
-    if request.method == 'POST':
-        form = SpecialistProfileForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            # firstname = form.cleaned_data['firstname']
-            # lastname = form.cleaned_data['lastname']
-            # patronimic = form.cleaned_data['patronimic']
-            # phonenumber = form.cleaned_data['phonenumber']
-            # about = form.cleaned_data['about']
-            # age = form.cleaned_data['age']
-            # gender = form.cleaned_data['gender']
-            # avatar = form.cleaned_data['avatar']
-            # fs = FileSystemStorage()
-            # fs.save(avatar.name, avatar)
-            # logger.info(f'Получили все необходимые данные от специалиста.')
-            # specialist_profile = Profile(
-            #     firstname=firstname,
-            #     lastname=lastname,
-            #     patronimic=patronimic,
-            #     phonenumber=phonenumber,
-            #     about=about,
-            #     age=age,
-            #     gender=gender,
-            #     avatar=avatar
-            # )
-            # specialist_profile.save()
-            #form.save()
-            return render(request, 'catalogue.html', {'form': form})
-    else:
-        form = SpecialistProfileForm(instance=request.user.profile)
-    return render(request, 'specialist_profile_update.html', {'form': form})
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+    def get_success_url(self):
+        return reverse_lazy('profile_success')
 
 
-
-#пока не работает
-@login_required
-@transaction.atomic()
-def update_profile(request):
-    if request.method == 'POST':
-        u_form = SpecialistRegistrationForm(request.POST, instance=request.user)
-        p_form = SpecialistProfileForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            return redirect('index')
-    u_form = SpecialistRegistrationForm(instance=request.user)
-    p_form = SpecialistProfileForm(instance=request.user.profile)
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
-    return render(request, 'specialist_profile_update.html', context)
+class ProfileUpdateSuccessView(TemplateView):
+    template_name = 'profile_success.html'
 
 
 def login_view(request):
@@ -107,17 +64,6 @@ def login_view(request):
         else:
             return HttpResponse('Аккаунт не найден')
     return render(request, 'login.html')
-
-@login_required()
-def upprofile(request):
-    if request.method == 'POST':
-        form = SpecialistProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    else:
-        form = SpecialistProfileForm(instance=request.user)
-    return render(request, 'specialist_profile_update.html', {'form': form})
 
 
 def show_logged_profile(request):

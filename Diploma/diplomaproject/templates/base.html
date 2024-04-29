@@ -40,7 +40,7 @@
                 </div>
                 {% if request.user.is_authenticated %}
                 {{ request.user }}, <br>вы авторизованы
-                <a class="nav-item nav-link" href="{% url 'specialist_profile_update' %}">Обновить профиль</a>
+                <a class="nav-item nav-link" href="{% url 'profile_update' %}">Обновить профиль</a>
                 <a class="nav-item nav-link" href="{% url 'show_logged_profile' %}">Посмотреть профиль</a>
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}

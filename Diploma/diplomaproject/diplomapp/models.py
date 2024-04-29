@@ -38,15 +38,6 @@ class Profile(models.Model):
     diplomas = models.ImageField("Дипломы", default=None)
     city = models.CharField("Город", max_length=128, blank=False, default="City")
 
-    # def save(self, *args, **kwargs):
-    #     super(Profile, self).save(*args, **kwargs)
-    #
-    #     avatar = Image.open(self.avatar.path)
-    #
-    #     if avatar.height > 300 or avatar.width > 300:
-    #         output_size = (300, 300)
-    #         avatar.thumbnail(output_size)
-    #         avatar.save(self.avatar.path)
 
     def __str__(self):
         return self.user.username
