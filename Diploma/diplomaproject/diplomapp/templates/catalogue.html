@@ -15,7 +15,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ specialist.firstname }} {{ specialist.lastname }}</h5>
                   <p class="card-text">{{ specialist.about }}</p>
-                  <a href="profile/{{ User }}" class="btn btn-primary">На страницу специалиста</a>
+                  <a href="profile/{{ specialist.id }}" class="btn btn-primary">На страницу специалиста</a>
                 </div>
               </div>
             {% endfor %}

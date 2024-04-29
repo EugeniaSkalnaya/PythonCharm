@@ -2,9 +2,10 @@
 
 {% block content %}
  <h2>Update Specialist Profile</h2>
- <form class="form" method="post">
+ <form class="form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+
+  {{ form.as_p }}
     <button type="submit">Update</button>
  </form>
 {% endblock %}
