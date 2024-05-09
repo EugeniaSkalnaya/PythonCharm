@@ -117,7 +117,7 @@ body {
   background: linear-gradient(to top, #76b852, #8DC26F);
   background-size: cover;
   background-attachment: fixed;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
@@ -127,7 +127,7 @@ h1 {
   font-weight: 100;
   text-transform: capitalize;
   letter-spacing: 4px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 /*-- main --*/
@@ -163,7 +163,7 @@ input[type="text"], input[type="email"], input[type="password"] {
   background-size: 100%;
   background-repeat: no-repeat;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 input.email, input.text.w3lpass {

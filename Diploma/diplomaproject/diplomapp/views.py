@@ -1,5 +1,3 @@
-import logging
-
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
@@ -9,10 +7,9 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, TemplateView
 
-from .forms import SpecialistRegistrationForm, DiplomaForm, SpecialistProfileForm
-from .models import Profile, Diploma
+from .forms import SpecialistRegistrationForm, SpecialistProfileForm
+from .models import Profile
 
-logger = logging.getLogger(__name__)
 
 
 def index(request):

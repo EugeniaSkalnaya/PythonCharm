@@ -83,7 +83,6 @@ LOGOUT_REDIRECT_URL = "index"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# поменять название базы данных
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
