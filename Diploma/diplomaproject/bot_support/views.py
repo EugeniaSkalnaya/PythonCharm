@@ -3,7 +3,6 @@ from .forms import TechSupportForm
 from .services import post_event_on_telegram
 
 
-
 async def send_tg_support_message(request):
     if request.method == 'POST':
         form = TechSupportForm(request.POST)

@@ -82,28 +82,3 @@ def catalogue(request):
     """Отображение всех исполнителей сайта в каталоге"""
     specialists = Profile.objects.all()
     return render(request, 'catalogue.html', {'specialists': specialists})
-
-#пока не реализовано и возможно стоит убрать
-def show_diplomas(request):
-    diplomas = Diploma.objects.all()
-    return render(request, 'diplomas.html', {'diplomas': diplomas})
-
-
-@login_required
-def upload_diploma(request):
-    """Загрузка дипломов в профиль исполнителя, работает только для залогиненных пользователей"""
-    if request.method == 'POST':
-        form = DiplomaForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data['diploma_upload']
-            text = form.cleaned_data['diploma_name']
-            fs = FileSystemStorage()
-            fs.save(image.name, image)
-            diploma = Diploma(
-                diploma_upload=image,
-                diploma_name=text
-            )
-            diploma.save()
-    else:
-        form = DiplomaForm()
-    return render(request, 'profile.html', {'form': form})

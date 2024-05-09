@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
- <h2>Update Specialist Profile</h2>
+ <h2>Обновление профиля</h2>
  <form class="form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
   {{ form.as_p }}
-    <button type="submit">Update</button>
+    <button type="submit">Отправить</button>
  </form>
 {% endblock %}
