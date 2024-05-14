@@ -9,10 +9,13 @@ from .forms import SpecialistRegistrationForm, SpecialistProfileForm
 from .models import Profile
 
 
-
 def index(request):
     print(request.user)
     return render(request, 'index.html')
+
+
+def form_success(request):
+    return render(request, 'form_success.html')
 
 
 def register(request):
@@ -24,6 +27,7 @@ def register(request):
             user = form.save()
             login(request, user)
             return render(request, "index.html")
+        return predictable_error(request)
     else:
         form = SpecialistRegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
@@ -47,6 +51,10 @@ class ProfileUpdateSuccessView(TemplateView):
     template_name = 'profile_success.html'
 
 
+def predictable_error(request):
+    return render(request, "error.html")
+
+
 def login_view(request):
     """Представление для аутентификации исполнителя"""
     if request.method == 'POST':
@@ -57,7 +65,7 @@ def login_view(request):
             login(request, user=user)
             return redirect('index')
         else:
-            return HttpResponse('Аккаунт не найден')
+            return predictable_error(request)
     return render(request, 'login.html')
 
 

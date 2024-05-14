@@ -12,7 +12,7 @@ async def send_telegram_message(request):
                       f"Пол исполнителя: {form.cleaned_data['gender']}\n" \
                       f"Заявка: {form.cleaned_data['text']}"
             await post_event_on_telegram(message)
-            return render(request, 'index.html', {'form': form})
+            return render(request, 'form_success.html', {'form': form})
     else:
         form = CustomerForm()
     return render(request, 'customer_form.html', {'form': form})

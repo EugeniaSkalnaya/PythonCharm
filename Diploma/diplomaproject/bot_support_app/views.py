@@ -11,7 +11,7 @@ async def send_tg_support_message(request):
                       f"Contact: {form.cleaned_data['phone_number']}\n" \
                       f"Text: {form.cleaned_data['text']}"
             await post_event_on_telegram(message)
-            return render(request, 'index.html', {'form': form})
+            return render(request, 'form_success.html', {'form': form})
     else:
         form = TechSupportForm()
     return render(request, 'tech_support.html', {'form': form})

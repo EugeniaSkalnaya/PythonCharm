@@ -11,4 +11,6 @@ urlpatterns = [
     path('profile/update', views.ProfileUpdateView.as_view(), name='profile_update'),
     path('profile/update/success/', views.ProfileUpdateSuccessView.as_view(), name='profile_success'),
     path("catalogue", views.catalogue, name="catalogue"),
+    path("error", views.predictable_error, name="predictable_error"),
+    path("form_sucess", views.form_success, name="form_success"),
     ]
