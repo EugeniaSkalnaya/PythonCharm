@@ -25,12 +25,21 @@ TELEGRAM_BOT_TOKEN = '6636548442:AAF3iREGHntdNBxymTruzotLhS1LBcvyLI8'
 TELEGRAM_CHAT_ID ='-4126106708'
 TELEGRAM_BOT_TOKEN1 = "6676580895:AAHL6A__jGVX8uO3N77T6pdqx6DAi0XAVSg"
 TELEGRAM_CHAT_ID1 = "-4177768340"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ALLOWED_HOSTS = ['127.0.0.1',
+                'https://www.KravetsProj.pythonanywhere.com'
+                 ]
+INTERNAL_IPS = ['127.0.0.1', ]
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -83,12 +92,27 @@ LOGOUT_REDIRECT_URL = "index"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "diplom.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "diplom.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'KravetsProj$default',
+        'USER': 'KravetsProj',
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': 'KravetsProj.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+            'init_command': "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -123,7 +147,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
+STATIC_ROOT = BASE_DIR / 'static/'
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / 'images'
