@@ -102,10 +102,10 @@ LOGOUT_REDIRECT_URL = "index"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'KravetsProj$default',
-        'USER': 'KravetsProj',
+        'NAME': 'KravetsDiplo$default',
+        'USER': 'KravetsDiplo',
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': 'KravetsProj.mysql.pythonanywhere-services.com',
+        'HOST': 'KravetsDiplo.mysql.pythonanywhere-services.com',
         'OPTIONS': {
             'init_command': "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
             'charset': 'utf8mb4',
