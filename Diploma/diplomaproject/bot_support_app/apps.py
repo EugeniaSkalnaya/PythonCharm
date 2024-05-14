@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TelegramBotAppConfig(AppConfig):
+class BotSupportConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "telegram_bot_app"
+    name = "bot_support_app"

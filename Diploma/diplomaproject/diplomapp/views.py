@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, TemplateView
@@ -77,5 +75,5 @@ def show_profile(request, pk):
 
 def catalogue(request):
     """Отображение всех исполнителей сайта в каталоге"""
-    specialists = Profile.objects.all()
+    specialists = Profile.objects.exclude(user="1")
     return render(request, 'catalogue.html', {'specialists': specialists})

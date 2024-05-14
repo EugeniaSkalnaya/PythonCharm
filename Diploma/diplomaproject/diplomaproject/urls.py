@@ -27,8 +27,8 @@ urlpatterns = [
     #path('diplomapp/', include("django.contrib.auth.urls")),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path("diplomapp/", include("diplomapp.urls")),
-    path("", include("telegram_bot_app.urls")),
-    path("", include("bot_support.urls"))
+    path("", include("bot_request_app.urls")),
+    path("", include("bot_support_app.urls"))
     ]
 
 

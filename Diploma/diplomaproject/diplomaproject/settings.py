@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.admin",
     "diplomapp",
-    "telegram_bot_app",
-    "bot_support",
+    "bot_request_app",
+    "bot_support_app",
 ]
 
 MIDDLEWARE = [
@@ -86,7 +86,7 @@ LOGOUT_REDIRECT_URL = "index"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR / "diplom.sqlite3",
     }
 }
 

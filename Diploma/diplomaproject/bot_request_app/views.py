@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .forms import CustomerForm
 from .services import post_event_on_telegram
 

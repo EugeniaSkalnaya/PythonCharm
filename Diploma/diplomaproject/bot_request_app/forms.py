@@ -10,4 +10,6 @@ class CustomerForm(forms.Form):
     gender = forms.ChoiceField(choices=[('M', 'Мужчина'), ('F', 'Женщина')],
                                    widget=forms.Select(attrs={'class': 'form-check-input'}))
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
-                                                            'placeholder': 'Опишите вашу проблему, чтобы с вами мог связаться подходящий специалист'}))
+                                                            'placeholder': 'Опишите вашу проблему, '
+                                                                           'чтобы с вами мог связаться '
+                                                                           'подходящий специалист'}))

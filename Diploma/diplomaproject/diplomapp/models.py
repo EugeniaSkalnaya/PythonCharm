@@ -1,28 +1,19 @@
-from PIL import Image
-from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.conf import settings
-from django.core.validators import FileExtensionValidator #, RegexValidator
+from django.core.validators import FileExtensionValidator
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 
 GENDER_CHOICE = (
     ("M", "Мужчина"),
     ("F", "Женщина"),
 )
-# class User(AbstractUser):
-#     pass
-
 
 User = get_user_model()
 
-# phone_number_regex = RegexValidator(regex=r"^[0-9](?:[ -]?[0-9]){0,14}$")
-
 
 class Profile(models.Model):
-    """ Описание класса специалист"""
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    """ Описание класса профиля специалистя"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField("Имя", max_length=50, blank=False, default="Name")
     lastname = models.CharField("Фамилия", max_length=50, blank=False, default="Surname")
     patronimic = models.CharField("Отчество", max_length=128, null=True, default="Patronimic")
@@ -35,7 +26,6 @@ class Profile(models.Model):
                                validators=[FileExtensionValidator(allowed_extensions=('png', 'jpg', 'jpeg'))])
     rating = models.DecimalField(default=0.0, max_digits=3, decimal_places=2)
     reviews = models.TextField("Отзывы", max_length=300, default="Reviews")
-    diplomas = models.ImageField("Дипломы", default=None)
     city = models.CharField("Город", max_length=128, blank=False, default="City")
 
 
@@ -48,21 +38,15 @@ class Profile(models.Model):
         ]
 
 
-class Diploma(models.Model):
-    """ Расширение для класса специалист для прикрепления файла с фото дипломов"""
-    specialist = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    diploma_upload = models.ImageField(upload_to="images/")
-    diploma_name = models.TextField("Diploma_name", max_length=300)
-
-
-class Customer(models.Model):
-    """ Модель для заявки на исполнение задачи"""
-    name = models.CharField("Имя", max_length=50, blank=False)
-    gender = models.CharField(choices=GENDER_CHOICE, max_length=50, blank=False)
-    phone_number = models.CharField(max_length=16, unique=True)
-    text = models.TextField("Запрос", blank=False)
-
-    class Meta:
-        db_table = "customer"
-        verbose_name = "Форма запроса"
-        verbose_name_plural = "Формы запроса"
+# оставила в комментариях, так как при иногда требуется сохранять запрос в базе данных
+# class Customer(models.Model):
+#     """ Модель для заявки на исполнение задачи"""
+#     name = models.CharField("Имя", max_length=50, blank=False)
+#     gender = models.CharField(choices=GENDER_CHOICE, max_length=50, blank=False)
+#     phone_number = models.CharField(max_length=16, unique=True)
+#     text = models.TextField("Запрос", blank=False)
+#
+#     class Meta:
+#         db_table = "customer"
+#         verbose_name = "Форма запроса"
+#         verbose_name_plural = "Формы запроса"
