@@ -25,21 +25,18 @@ TELEGRAM_BOT_TOKEN = '6636548442:AAF3iREGHntdNBxymTruzotLhS1LBcvyLI8'
 TELEGRAM_CHAT_ID ='-4126106708'
 TELEGRAM_BOT_TOKEN1 = "6676580895:AAHL6A__jGVX8uO3N77T6pdqx6DAi0XAVSg"
 TELEGRAM_CHAT_ID1 = "-4177768340"
-SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ALLOWED_HOSTS = ['127.0.0.1',
-                'https://www.KravetsProj.pythonanywhere.com'
+ALLOWED_HOSTS = [
                  ]
 INTERNAL_IPS = ['127.0.0.1', ]
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
@@ -98,20 +95,6 @@ LOGOUT_REDIRECT_URL = "index"
 #         "NAME": BASE_DIR / "diplom.sqlite3",
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'KravetsDiplo$default',
-        'USER': 'KravetsDiplo',
-        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': 'KravetsDiplo.mysql.pythonanywhere-services.com',
-        'OPTIONS': {
-            'init_command': "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
-        },
-    }
-}
 
 
 # Password validation
