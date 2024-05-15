@@ -27,7 +27,7 @@ TELEGRAM_BOT_TOKEN1 = "6676580895:AAHL6A__jGVX8uO3N77T6pdqx6DAi0XAVSg"
 TELEGRAM_CHAT_ID1 = "-4177768340"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
